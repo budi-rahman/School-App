@@ -70,7 +70,7 @@
 					<td align="center"><%= data.teacher[i].last_name %></td>
 					<td align="center"><%= data.teacher[i].email %></td>
 					<td align="center"><%= data.teacher[i].gender %></td>
-					<td align="center"><a href="/student/edit/<%= data.teacher[i].id %>"><button type="button" class="btn btn-primary">Edit</button></a> | <a href="/student/delete/<%= data.teacher[i].id %>"><button type="button" class="btn btn-danger">Delete</button></a></td>
+					<td align="center"><a href="/teacher/edit/<%= data.teacher[i].id %>"><button type="button" class="btn btn-primary">Edit</button></a> | <a href="/student/delete/<%= data.teacher[i].id %>"><button type="button" class="btn btn-danger">Delete</button></a></td>
 				</tr>
 				<% } %>
 			</tbody>

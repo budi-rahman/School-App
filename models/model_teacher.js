@@ -29,12 +29,16 @@ class model {
 
     static updateTeacher(data, cb){
 
-        var updateq = `UPDATE "Teacher"
-        SET first_name = "${data.first_name}",
-        SET last_name = "${data.last_name}",
-        SET email = ${data.email},
-        SET gender = ${data.gender}
-        WHERE course_id = ${data.id};`
+        var updateq = `UPDATE "Teacher" SET first_name = '${data.first_name}', last_name = '${data.last_name}', email = '${data.email}', gender = '${data.gender}' WHERE id = ${data.id};`
+
+        pool.query(updateq, (err,res) => {
+            if (err){
+                cb(err)
+            }else {
+                cb(null, res)
+            }
+        })
+
     }
 
     static deleteTeacher(id, cb){
