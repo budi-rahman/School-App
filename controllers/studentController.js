@@ -15,13 +15,19 @@ class Controller {
     }
 
     static addStudent(req, res){
+        if (!validateEmail(req.body)){
+            res.send("Email tidak boleh kosong atau salah")
+        } else if (!validateDate(req.body.date)){
+            res.send("format date salah")
+        }else {
             model.addStudent(req.body, (err) => {
                 if (err){
                     res.send(err.message)
                 }else {
                     res.send("Berhasil di tambah")
                 }
-        })
+            })
+        }
     }
 
     static showAdd(req, res){
@@ -60,6 +66,35 @@ class Controller {
 
 
 }
+
+function validateEmail(data){
+    console.log(data)
+    if(data.email == ""){
+        return false
+    } else if (!validateEmailstructure(data.email)){
+        console.log("Malfunctioned email")
+        return false
+    }
+
+    return true
+}
+
+function validateDate(date){
+
+    var date_regex = /^(0[1-9]|1[0-2])\-(0[1-9]|1\d|2\d|3[01])\-(19|20)\d{2}$/;
+    var date_regex2 = /^(0[1-9]|1[0-2])\-(0[1-9]|1\d|2\d|3[01])\-(19|20)\d{2}$/;
+    if (!(date_regex.test(date)) && date_regex2.test(date)) {
+        return false;
+    }
+    return true
+}
+
+function validateEmailstructure(email) {
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+}
+
+
 
 
 module.exports = Controller

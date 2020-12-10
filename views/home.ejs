@@ -8,36 +8,41 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
 <body>
+	<div class="container">
+				<!-- Content here -->
+	
 	<h1>Data Student</h1>
 
     <a href="/student/add"><button class="btn btn-primary" >Add</button></a>
-    
+    <br> <br>
 
-	<table border="1" class="table">
+	<table border="1" class="table table-hover">
 		<thead>
 			<tr>
-				<th>Id</th>
-				<th>Fisrt Name</th>
-				<th>Last Name</th>
-				<th>Email</th>
-				<th>Gender</th>
-				<th>Birthdate</th>
+				<th style="text-align:center">Id</th>
+				<th style="text-align:center">Fisrt Name</th>
+				<th style="text-align:center">Last Name</th>
+				<th style="text-align:center">Email</th>
+				<th style="text-align:center">Gender</th>
+				<th style="text-align:center">Birthdate</th>
+				<th style="text-align:center">Modify</th>
 			</tr>
 		</thead>
 		<tbody>
             <% for (var i = 0; i< data.length; i++) { %>
 			<tr>
-				<td><%= data[i].id %></td>
-				<td><%= data[i].first_name %></td>
-				<td><%= data[i].last_name %></td>
-				<td><%= data[i].email %></td>
-				<td><%= data[i].gender %></td>
-				<td><%= data[i].birthdate %></td>
-				<td><a href="/student/edit/<%= data[i].id %>">Edit</a> | <a href="/student/delete/<%= data[i].id %>">Delete</a></td>
+				<td align="center"><%= data[i].id %></td>
+				<td align="center"><%= data[i].first_name %></td>
+				<td align="center"><%= data[i].last_name %></td>
+				<td align="center"><%= data[i].email %></td>
+				<td align="center"><%= data[i].gender %></td>
+				<td align="center"><%= data[i].birthdate %></td>
+				<td align="center"><a href="/student/edit/<%= data[i].id %>"><button type="button" class="btn btn-primary">Edit</button></a> | <a href="/student/delete/<%= data[i].id %>"><button type="button" class="btn btn-danger">Delete</button></a></td>
             </tr>
             <% } %>
 		</tbody>
 	</table>
+</div>
 </body>
 
 </html>
