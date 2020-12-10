@@ -1,30 +1,41 @@
 const model = require("../models/model_students")
+const model_teacher = require("../models/model_teacher")
 
 
 class Controller {
 
     static home (req, res){
+        var student = null
+        var teacher = null
         model.getAll((err,data)=> {
             if (err){
-                res.send(err)
+                res.render("error",{data:err.message})
             }else {
-                console.log(data)
-                res.render("home",{data:data})
+                student = data
             }
+        })
+        
+        model_teacher.getAll((err,teachers)=> {
+            if (err){
+                res.render("error",{data:err.message})
+            }else {
+                teacher = teachers
+            }
+            res.render("home",{data:{student,teacher}})
         })
     }
 
     static addStudent(req, res){
         if (!validateEmail(req.body)){
-            res.send("Email tidak boleh kosong atau salah")
+            res.render("error",{data:"Email tidak boleh kosong atau salah"})
         } else if (!validateDate(req.body.date)){
-            res.send("format date salah")
+            res.render("error",{data:"format date salah"})
         }else {
             model.addStudent(req.body, (err) => {
                 if (err){
-                    res.send(err.message)
+                    res.render("error",err.message)
                 }else {
-                    res.send("Berhasil di tambah")
+                    res.render("success",{data:"Berhasil di tambah"})
                 }
             })
         }
@@ -37,9 +48,9 @@ class Controller {
     static delStudent(req, res){
         model.deleteStudent(req.params.id, (err) => {
             if(err){
-                res.send(err.message)
+                res.render("error",{data:err.message})
             }else {
-                res.send("Berhasil didelete")
+                res.render("success",{data:"Berhasil didelete"})
             }
         })
     }
@@ -47,9 +58,9 @@ class Controller {
     static editStudent(req, res){
         model.updateStudent(req.body, (err)=> {
             if (err){
-                res.send(err.message)
+                res.render("error",{data:err.message})
             } else {
-                res.send(req.body)
+                res.render("success",{data:"Data berhasil di update"})
             }
         })
     }
@@ -57,7 +68,7 @@ class Controller {
     static showEditStudent(req, res){
         model.getStudent(req.params.id, (err,data) => {
             if (err){
-                res.send(err)
+                res.render("error",{data:err.message})
             }else {
                 res.render("edit-student",{data:data})
             }

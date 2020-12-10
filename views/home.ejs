@@ -13,6 +13,9 @@
 	
 	<h1>Data Student</h1>
 
+	<!-- <%= JSON.stringify(data.teacher) %> -->
+	<% var student = JSON.stringify(data.student) %>
+
     <a href="/student/add"><button class="btn btn-primary" >Add</button></a>
     <br> <br>
 
@@ -20,7 +23,7 @@
 		<thead>
 			<tr>
 				<th style="text-align:center">Id</th>
-				<th style="text-align:center">Fisrt Name</th>
+				<th style="text-align:center">First Name</th>
 				<th style="text-align:center">Last Name</th>
 				<th style="text-align:center">Email</th>
 				<th style="text-align:center">Gender</th>
@@ -29,19 +32,50 @@
 			</tr>
 		</thead>
 		<tbody>
-            <% for (var i = 0; i< data.length; i++) { %>
+            <% for (var i = 0; i< data.student.length; i++) { %>
 			<tr>
-				<td align="center"><%= data[i].id %></td>
-				<td align="center"><%= data[i].first_name %></td>
-				<td align="center"><%= data[i].last_name %></td>
-				<td align="center"><%= data[i].email %></td>
-				<td align="center"><%= data[i].gender %></td>
-				<td align="center"><%= data[i].birthdate %></td>
-				<td align="center"><a href="/student/edit/<%= data[i].id %>"><button type="button" class="btn btn-primary">Edit</button></a> | <a href="/student/delete/<%= data[i].id %>"><button type="button" class="btn btn-danger">Delete</button></a></td>
+				<td align="center"><%= data.student[i].id %></td>
+				<td align="center"><%= data.student[i].first_name %></td>
+				<td align="center"><%= data.student[i].last_name %></td>
+				<td align="center"><%= data.student[i].email %></td>
+				<td align="center"><%= data.student[i].gender %></td>
+				<td align="center"><%= data.student[i].birthdate %></td>
+				<td align="center"><a href="/student/edit/<%= data.student[i].id %>"><button type="button" class="btn btn-primary">Edit</button></a> | <a href="/student/delete/<%= data.student[i].id %>"><button type="button" class="btn btn-danger">Delete</button></a></td>
             </tr>
             <% } %>
 		</tbody>
 	</table>
+
+	<h1>Data Teacher</h1>
+
+    <a href="/teacher/add"><button class="btn btn-primary" >Add</button></a>
+    
+
+	<table border="1" class="table">
+		<thead>
+			<tr>
+					<th style="text-align:center">Id</th>
+					<th style="text-align:center">First Name</th>
+					<th style="text-align:center">Last Name</th>
+					<th style="text-align:center">Email</th>
+					<th style="text-align:center">Gender</th>
+					<th style="text-align:center">Modify</th>
+			</tr>
+		</thead>
+		<tbody>
+				<% for (var i = 0; i< data.teacher.length; i++) { %>
+				<tr>
+					<td align="center"><%= data.teacher[i].id %></td>
+					<td align="center"><%= data.teacher[i].first_name %></td>
+					<td align="center"><%= data.teacher[i].last_name %></td>
+					<td align="center"><%= data.teacher[i].email %></td>
+					<td align="center"><%= data.teacher[i].gender %></td>
+					<td align="center"><a href="/student/edit/<%= data.teacher[i].id %>"><button type="button" class="btn btn-primary">Edit</button></a> | <a href="/student/delete/<%= data.teacher[i].id %>"><button type="button" class="btn btn-danger">Delete</button></a></td>
+				</tr>
+				<% } %>
+			</tbody>
+	</table>
+
 </div>
 </body>
 

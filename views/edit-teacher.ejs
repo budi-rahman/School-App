@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Edit Data Guru</title>
+</head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<body>
+    <h1>Edit Data Guru</h1>
+    
+
+	<form action="/teacher/edit/<%= data[0].id%>" method="post">
+		<div>
+			<label>First Name</label>
+			<input type="text" name = "first_name" value = "<%= data[0].first_name %>" placeholder="First Name">
+		</div>
+		<div>
+			<label>Last Name</label>
+			<input type="text" name = "last_name" value = "<%= data[0].last_name %>" placeholder="Last Name">
+		</div>
+		<div>
+			<label>Email</label>
+			<input type="text" name = "email" value = "<%= data[0].email %>" placeholder="example@sekolah.id">
+		</div>
+		<div>
+			<label>Gender</label>
+			<select name = "gender">
+				<option value="Male">Male</option>
+				<option value="Female">Female</option>
+			</select>
+		</div>
+		<div>
+            <input type = "hidden" name = "id" value = "<%= data[0].id %>">
+			<button  class="btn btn-default" type="submit">Update</button><% data[0].id %>
+		</div>
+	</form>
+</body>
+
+</html>
