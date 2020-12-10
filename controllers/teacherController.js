@@ -6,7 +6,7 @@ class TeacherController {
     static home (req, res){
         model.getAll((err,data)=> {
             if (err){
-                res.send(err)
+                res.render("error",{data:err.message})
             }else {
                 console.log(data)
                 res.render("home",{data:data})
@@ -17,9 +17,9 @@ class TeacherController {
     static addTeacher(req, res){
             model.addTeacher(req.body, (err) => {
                 if (err){
-                    res.send(err.message)
+                    res.render("error",{data:err.message})
                 }else {
-                    res.send("Berhasil di tambah")
+                    res.render("success",{data:"Berhasil di tambah"})
                 }
         })
     }
@@ -31,9 +31,9 @@ class TeacherController {
     static delTeacher(req, res){
         model.deleteTeacher(req.params.id, (err) => {
             if(err){
-                res.send(err.message)
+                res.render("error",{data:err.message})
             }else {
-                res.send("Berhasil didelete")
+                res.render("success",{data:"Berhasil didelete"})
             }
         })
     }
@@ -41,9 +41,9 @@ class TeacherController {
     static editTeacher(req, res){
         model.updateTeacher(req.body, (err)=> {
             if (err){
-                res.send(err.message)
+                res.render("error",{data:err.message})
             } else {
-                res.send(req.body)
+                res.render("success",{data:"Data berhasil di update"})
             }
         })
     }
@@ -51,7 +51,7 @@ class TeacherController {
     static showEditTeacher(req, res){
         model.getTeacher(req.params.id, (err,data) => {
             if (err){
-                res.send(err)
+                res.render("error",{data:err.message})
             }else {
                 res.render("edit-teacher",{data:data})
             }

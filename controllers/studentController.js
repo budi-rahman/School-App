@@ -12,16 +12,15 @@ class Controller {
                 res.render("error",{data:err.message})
             }else {
                 student = data
+                model_teacher.getAll((err,teachers)=> {
+                    if (err){
+                        res.render("error",{data:err.message})
+                    }else {
+                        teacher = teachers
+                    }
+                    res.render("home",{data:{student,teacher}})
+                })
             }
-        })
-        
-        model_teacher.getAll((err,teachers)=> {
-            if (err){
-                res.render("error",{data:err.message})
-            }else {
-                teacher = teachers
-            }
-            res.render("home",{data:{student,teacher}})
         })
     }
 
