@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Edit Data Siswa</title>
+</head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<body>
+    <h1>Edit Data Siswa</h1>
+    
+
+	<form action="/student/add" method="post">
+		<div>
+			<label>First Name</label>
+			<input type="text" name = "first_name" value = "" placeholder="First Name">
+		</div>
+		<div>
+			<label>Last Name</label>
+			<input type="text" name = "last_name" value = "" placeholder="Last Name">
+		</div>
+		<div>
+			<label>Email</label>
+			<input type="text" name = "email" value = "" placeholder="example@sekolah.id">
+		</div>
+		<div>
+			<label>Gender</label>
+			<select name = "gender">
+				<option value="Male">Male</option>
+				<option value="Female">Female</option>
+			</select>
+		</div>
+		<div>
+			<label>Birth Date</label>
+			<input type="text" name = "birthdate" value = "" placeholder="birth date">
+		</div>
+		<div>
+            <input type = "hidden" name = "id" value = "">
+			<button  class="btn btn-default" type="submit">Add</button>
+		</div>
+	</form>
+</body>
+
+</html>
